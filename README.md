@@ -50,10 +50,6 @@ Typically at http://localhost:3000/
 
 `checkbalance()`: To check the balance of the user.
 
-`getbalancefromwalletaddress(address walletAddress)`: It will check the balance of another account with the given wallet address. Anyone will be abale to check the balance of any account with the wallet address.
-
-`increaseBalance() :`This function allows the owner to increase the balance of the contract by a specified amount.
-
-`decreaseBalance(): `This function allows the owner to decrease the balance of the contract by a specified amount, as long as it does not result in a negative balance.
+`mintbalance() :`This function allows the owner to increase the balance of the contract by a specified amount.
 
  
