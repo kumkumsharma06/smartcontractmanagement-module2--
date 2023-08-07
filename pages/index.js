@@ -54,14 +54,14 @@ export default function HomePage() {
   const getBalance = async (walletaddress) => {
     if (atm) {
       alert(walletaddress)
-      setBalance((await atm.getBalanceFromWalletAddress(walletaddress)).toNumber());
+     setBalance((await atm.getBalanceFromWalletAddress(walletaddress)).toNumber());
     }
   };
 
   const deposit = async () => {
     alert(account)
     if (atm) {
-      let tx = await atm.depositamount(1, { gasLimit: 3e7 });
+      let tx = await atm.depositamount(15, { gasLimit: 3e7 });
       await tx.wait();
       getBalance(account[0]);
     }
@@ -69,27 +69,27 @@ export default function HomePage() {
 
   const withdraw = async () => {
     if (atm) {
-      let tx = await atm.withdrawamount(1, { gasLimit: 3e7 });
+      let tx = await atm.withdrawamount(15, { gasLimit: 3e7 });
       await tx.wait();
       getBalance(account[0]);
     }
   };
-  const increaseBalance = async () => {
+  const mintbalance = async () => {
     alert(account)
     if (atm) {
-      let tx = await atm.increaseBalance(100,{ gasLimit: 3e7 });
+      let tx = await atm.mintbalance(100,{ gasLimit: 3e7 });
       await tx.wait();
       getBalance(account[0]);
     }
   };
 
-  const decreaseBalance = async () => {
-    if (atm) {
-      let tx = await atm.decreaseBalance(50,{ gasLimit: 3e7 });
-      await tx.wait();
-      getBalance(account[0]);
-    }
-  };
+  //const decreaseBalance = async () => {
+    //if (atm) {
+      //let tx = await atm.decreaseBalance(50,{ gasLimit: 3e7 });
+      //await tx.wait();
+      //getBalance(account[0]);
+    //}
+  
   // const changeaccount = async () => {
   //   handleAccount([prompt("Enter wallet address")])
   //   getBalance(account[0]);
@@ -118,37 +118,12 @@ export default function HomePage() {
 
     return (
       <div class="overlay">
-        <p style={{ fontWeight: "bold" }}>Your Account: {account}</p>
-        <p style={{ fontWeight: "bold" }}>Your Current Balance is: {balance}</p>
-        <button
-          onClick={deposit}
-          style={{ backgroundColor: "green", color: "white" }}
-        >
-          Deposit 1 ETH
-        </button>
-        <button
-          onClick={withdraw}
-          style={{ backgroundColor: "red", color: "white" }}
-        >
-          Withdraw 1 ETH
-        </button>
-        <button
-          onClick={increaseBalance}
-          style={{ backgroundColor: "blue", color: "white" }}
-        >
-           Increase Balance by 100 ETH
-        </button>
-        <button
-          onClick={decreaseBalance}
-          style={{ backgroundColor: "orange", color: "white" }}
-        >
-          Decrease Balance by 50 ETH
-
-        </button>
-        <button onClick={async () => {
-          alert((await atm.getBalanceFromWalletAddress(prompt("Wallet Address: "))).toNumber())
-        }}>check  others balance</button>
-      </div>
+  <p class="bold-text">Your Account: {account}</p>
+  <p class="bold-text">Your Current Balance is: {balance}</p>
+  <button class="deposit-button" onClick={deposit}>Deposit 15 ETH</button>
+  <button class="withdraw-button" onClick={withdraw}>Withdraw 15 ETH</button>
+  <button class="mint-button" onClick={mintbalance}>Mint Balance OF 100 ETH</button>
+</div>
     );
   };
 
@@ -163,7 +138,7 @@ export default function HomePage() {
     <style jsx>{`
       .container {
         text-align: center;
-        background-color: lightblue;
+        background-color: blue;
       }
     `}
     </style>
